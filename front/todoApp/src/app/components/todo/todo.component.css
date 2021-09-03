@@ -1,0 +1,35 @@
+body {
+    min-height: calc(100vh - 80px);
+    background: linear-gradient(15deg, #CCFFFF, #FFCCCC);
+}
+
+h1 {
+    padding: 5px;
+    font-size: 30px;
+}
+
+h2 {
+    padding: 5px;
+    font-size: 23px;
+}
+
+hr {
+    width: 300px;
+    margin: auto;
+    height: 3px;
+}
+
+.footer {
+    padding: 50px;
+    border: 1px solid;
+}
+
+.form-group {
+    padding: 10px;
+    margin: auto;
+    width: 300px;
+}
+
+.container-fluid {
+    padding: 15px;
+}

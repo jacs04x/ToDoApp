@@ -1,0 +1,8 @@
+{
+    "/*": {
+        "target": "https://ptodoapp.herokuapp.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+
+}

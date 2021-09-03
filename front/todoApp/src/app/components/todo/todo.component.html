@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">Agregar Tarea <i class="fas fa-plus"></i></h1>
+        <hr>
+        <form [formGroup]="todoForm" (ngSubmit)="creaToDo()">
+            <div class="form-group">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" formControlName="todo" [ngClass]="{ 'is-invalid': submitted && f.todo.errors }" placeholder="Tarea">
+                    <label for="floatingInput">Tarea</label>
+                    <div *ngIf="submitted && f.todo.errors" class="invalid-feedback">
+                        <div *ngIf="f.todo.errors.required">Para agregar una tarea es necesario ingresar un texto</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary text-center form-control">Agregar</button>
+            </div>
+        </form>
+
+        <h2 class="text-center">Por hacer...</h2>
+        <hr>
+        <div class="text-center" *ngIf="todos.length == 0" style="padding:15px;">No hay nada por hacer</div>
+        <div *ngFor="let todo of todos">
+            <!--To Do-->
+            <div class="form-group" *ngIf="todo.completada == false">
+                <fieldset class="form-group" *ngIf="todo.completada == false">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{todo.completada}}" (click)="cambia(todo)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                        {{todo.todo}} <br></label>
+                    </div>
+
+                </fieldset>
+                <div class="text-center" *ngIf="todo.completada == false">
+                    <button class="btn btn-outline-info btn-sm" (click)="editar(todo)">Editar</button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="showQuestion(todo._id)">Eliminar</button>
+                </div>
+            </div>
+
+        </div>
+        <h2 class="text-center">Hecho <i class="fas fa-check" style="color: green;"></i></h2>
+        <hr>
+        <div class="text-center" *ngIf="todos.length == 0" style="padding:15px;">No hay nada por completar</div>
+        <div *ngFor="let todo of todos">
+            <!--Done-->
+
+            <div class="form-group" *ngIf="todo.completada == true">
+
+                <fieldset class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{todo.completada}}" checked="" (click)="regresa(todo)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                        <del>{{todo.todo}}</del> <br>                    
+                      </label>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="text-center" *ngIf="todo.completada == true">
+                <button class="btn btn-outline-info btn-sm" (click)="editar(todo)">Editar</button>
+                <button class="btn btn-outline-danger btn-sm" (click)="showQuestion(todo._id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
